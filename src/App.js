@@ -1,21 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import { JsonEditor as Editor } from 'jsoneditor-react';
 import 'jsoneditor-react/es/editor.min.css';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Upload } from './components/Upload/Upload';
 
 function App() {
 
   const [descriptions, setDescription] = useState([]);
-  /* useEffect( () => {
-    axios.get(`https://online.panamericanaturismo.cl/public/store/static_info/descripcion_habs.json`)
-      .then(res => {
-        setDescription(res.data);
-        console.log(descriptions);
-      })
-  }, []) */
   const downloadFile = async () => {
     const fileName = "file";
     const json = JSON.stringify(descriptions);
@@ -29,10 +20,9 @@ function App() {
     document.body.removeChild(link);
   }
   const handleChange = (data) => {setDescription(data); };
-  if (descriptions && descriptions != ""){   
+  if (descriptions && descriptions !== ""){   
     return (
       <div className="App">
-        {/* <Upload onUploadFile={(data) => setDescription(data) } /> */}
           <Editor
             value={descriptions}
             onChange={handleChange}
